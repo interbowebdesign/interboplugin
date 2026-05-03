@@ -29,6 +29,13 @@ final class Interbo_Plugin {
 	private $admin = null;
 
 	/**
+	 * Updater class instance.
+	 *
+	 * @var Interbo_Updater|null
+	 */
+	private $updater = null;
+
+	/**
 	 * Gets the plugin singleton instance.
 	 *
 	 * @return Interbo_Plugin
@@ -46,6 +53,7 @@ final class Interbo_Plugin {
 	 */
 	private function __construct() {
 		$this->register_hooks();
+		$this->load_updater();
 		$this->load_admin();
 	}
 
@@ -61,7 +69,7 @@ final class Interbo_Plugin {
 		_doing_it_wrong(
 			__METHOD__,
 			esc_html__( 'Unserializing instances of this class is not allowed.', 'interbo-site-defaults' ),
-			'0.1.0'
+			INTERBO_SITE_DEFAULTS_VERSION
 		);
 	}
 
@@ -85,6 +93,18 @@ final class Interbo_Plugin {
 			false,
 			dirname( plugin_basename( INTERBO_SITE_DEFAULTS_FILE ) ) . '/languages'
 		);
+	}
+
+	/**
+	 * Loads update-check functionality.
+	 *
+	 * @return void
+	 */
+	private function load_updater() {
+		require_once INTERBO_SITE_DEFAULTS_PATH . 'includes/class-interbo-updater.php';
+
+		$this->updater = new Interbo_Updater();
+		$this->updater->add_hooks();
 	}
 
 	/**

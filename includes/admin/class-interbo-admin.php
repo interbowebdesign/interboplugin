@@ -59,7 +59,7 @@ class Interbo_Admin {
 	 * @return void
 	 */
 	public function admin_init() {
-		// Reserved for future settings registration. v0.1 has no form handling.
+		// Reserved for future settings registration. v0.2 has no form handling.
 	}
 
 	/**
@@ -143,14 +143,20 @@ class Interbo_Admin {
 		$page_class      = 'wrap interbo-site-defaults';
 		$plugin_name     = __( 'Interbo Site Defaults', 'interbo-site-defaults' );
 		$version         = INTERBO_SITE_DEFAULTS_VERSION;
-		$release_status  = __( 'development', 'interbo-site-defaults' );
-		$release_channel = __( 'beta', 'interbo-site-defaults' );
-		$summary         = __( 'Eerste testbare versie met alleen een veilige adminpagina. Er worden nog geen instellingen opgeslagen en er is geen updaterlogica aanwezig.', 'interbo-site-defaults' );
-		$description     = __( 'Interbo Site Defaults is de beheerde basis voor gedeelde Interbo Webdesign site defaults. Versie 0.1 bevat alleen deze admin-dashboardbasis, zodat de plugin gecontroleerd kan worden getest voordat er nieuwe functies worden toegevoegd.', 'interbo-site-defaults' );
+		$release_status  = INTERBO_SITE_DEFAULTS_RELEASE_STATUS;
+		$release_channel = INTERBO_SITE_DEFAULTS_RELEASE_CHANNEL;
+		$update_source   = INTERBO_SITE_DEFAULTS_UPDATE_URI;
+		$api_endpoint    = INTERBO_SITE_DEFAULTS_GITHUB_RELEASES_API;
+		$token_status    = is_string( INTERBO_SITE_DEFAULTS_GITHUB_TOKEN ) && '' !== trim( INTERBO_SITE_DEFAULTS_GITHUB_TOKEN ) ? __( 'Geconfigureerd via constante', 'interbo-site-defaults' ) : __( 'Niet geconfigureerd', 'interbo-site-defaults' );
+		$autoupdate      = INTERBO_SITE_DEFAULTS_AUTOUPDATE ? __( 'Ingeschakeld', 'interbo-site-defaults' ) : __( 'Uitgeschakeld', 'interbo-site-defaults' );
+		$summary         = __( 'Versie 0.2 voegt centrale updatecontrole en automatische achtergrondupdates via GitHub Releases toe. Er worden nog geen plugininstellingen opgeslagen.', 'interbo-site-defaults' );
+		$description     = __( 'Interbo Site Defaults is de beheerde basis voor gedeelde Interbo Webdesign site defaults. Versie 0.2 controleert via de WordPress update-API of er een nieuwere centrale GitHub-release beschikbaar is en kan die automatisch installeren.', 'interbo-site-defaults' );
 		$notes           = array(
 			__( 'Dashboard is alleen beschikbaar voor gebruikers met manage_options.', 'interbo-site-defaults' ),
-			__( 'Nonces en sanitizers zijn voorbereid voor latere formulieren.', 'interbo-site-defaults' ),
-			__( 'Deze versie bewaart geen opties, transients, custom tabellen of gebruikersmeta.', 'interbo-site-defaults' ),
+			__( 'Updatecontrole gebruikt de WordPress Update URI-header en de GitHub Releases API.', 'interbo-site-defaults' ),
+			__( 'Automatische achtergrondupdates kunnen via INTERBO_SITE_DEFAULTS_AUTOUPDATE worden uitgeschakeld.', 'interbo-site-defaults' ),
+			__( 'Releasegegevens worden tijdelijk gecachet in een site transient.', 'interbo-site-defaults' ),
+			__( 'Deze versie bewaart geen opties, custom tabellen of gebruikersmeta.', 'interbo-site-defaults' ),
 		);
 		?>
 		<div class="<?php echo esc_attr( $page_class ); ?>">
@@ -186,6 +192,32 @@ class Interbo_Admin {
 			<div class="interbo-site-defaults__description">
 				<?php echo wp_kses_post( wpautop( $description ) ); ?>
 			</div>
+
+			<h2><?php esc_html_e( 'Updatebron', 'interbo-site-defaults' ); ?></h2>
+			<table class="form-table" role="presentation">
+				<tbody>
+					<tr>
+						<th scope="row"><?php esc_html_e( 'Update URI', 'interbo-site-defaults' ); ?></th>
+						<td><a href="<?php echo esc_url( $update_source ); ?>"><?php echo esc_html( $update_source ); ?></a></td>
+					</tr>
+					<tr>
+						<th scope="row"><?php esc_html_e( 'GitHub API', 'interbo-site-defaults' ); ?></th>
+						<td><code><?php echo esc_html( $api_endpoint ); ?></code></td>
+					</tr>
+					<tr>
+						<th scope="row"><?php esc_html_e( 'GitHub token', 'interbo-site-defaults' ); ?></th>
+						<td><?php echo esc_html( $token_status ); ?></td>
+					</tr>
+					<tr>
+						<th scope="row"><?php esc_html_e( 'Automatische updates', 'interbo-site-defaults' ); ?></th>
+						<td><?php echo esc_html( $autoupdate ); ?></td>
+					</tr>
+					<tr>
+						<th scope="row"><?php esc_html_e( 'Pakketbron', 'interbo-site-defaults' ); ?></th>
+						<td><?php esc_html_e( 'Release asset interbo-site-defaults.zip, met fallback naar GitHub zipball.', 'interbo-site-defaults' ); ?></td>
+					</tr>
+				</tbody>
+			</table>
 
 			<h2><?php esc_html_e( 'Ontwikkelnotities', 'interbo-site-defaults' ); ?></h2>
 			<ul class="ul-disc">

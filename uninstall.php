@@ -9,4 +9,6 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-// Version 0.1 stores no options, transients, custom tables, or user meta.
+delete_site_transient( 'interbo_site_defaults_latest_release' );
+
+// Version 0.2 stores no options, custom tables, or user meta.
