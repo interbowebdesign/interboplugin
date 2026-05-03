@@ -3,7 +3,7 @@
  * Plugin Name: Interbo Site Defaults
  * Plugin URI: https://www.interbo.nl/
  * Description: Beheerde basisplugin voor Interbo Webdesign websites.
- * Version: 0.2.0
+ * Version: 0.3.0
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Author: Interbo Webdesign
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'INTERBO_SITE_DEFAULTS_VERSION', '0.2.0' );
+define( 'INTERBO_SITE_DEFAULTS_VERSION', '0.3.0' );
 define( 'INTERBO_SITE_DEFAULTS_FILE', __FILE__ );
 define( 'INTERBO_SITE_DEFAULTS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'INTERBO_SITE_DEFAULTS_URL', plugin_dir_url( __FILE__ ) );
@@ -33,6 +33,11 @@ define( 'INTERBO_SITE_DEFAULTS_RELEASE_STATUS', 'development' );
 define( 'INTERBO_SITE_DEFAULTS_RELEASE_CHANNEL', 'beta' );
 define( 'INTERBO_SITE_DEFAULTS_UPDATE_URI', 'https://github.com/interbowebdesign/interboplugin' );
 define( 'INTERBO_SITE_DEFAULTS_GITHUB_RELEASES_API', 'https://api.github.com/repos/interbowebdesign/interboplugin/releases' );
+define( 'INTERBO_SITE_DEFAULTS_WP_REQUIREMENTS_URL', 'https://wordpress.org/about/requirements/' );
+define( 'INTERBO_SITE_DEFAULTS_WP_REQUIREMENTS_CACHE_KEY', 'interbo_site_defaults_wp_requirements' );
+define( 'INTERBO_SITE_DEFAULTS_WP_RECOMMENDED_PHP', '8.3' );
+define( 'INTERBO_SITE_DEFAULTS_WP_RECOMMENDED_MYSQL', '8.0' );
+define( 'INTERBO_SITE_DEFAULTS_WP_RECOMMENDED_MARIADB', '10.6' );
 
 if ( ! defined( 'INTERBO_SITE_DEFAULTS_GITHUB_TOKEN' ) ) {
 	define( 'INTERBO_SITE_DEFAULTS_GITHUB_TOKEN', '' );

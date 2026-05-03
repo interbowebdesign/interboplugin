@@ -4,7 +4,7 @@ Tags: defaults, admin, interbo
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Beheerde basisplugin voor Interbo Webdesign site defaults.
 
 Interbo Site Defaults is de gecontroleerde basis voor gedeelde Interbo Webdesign site defaults.
 
-Versie 0.2 bevat een veilige admin-dashboardbasis en centrale updatecontrole via GitHub Releases.
+Versie 0.3 bevat een veilige admin-dashboardbasis, centrale updatecontrole via GitHub Releases en een read-only site info widget.
 
 == Installation ==
 
@@ -43,6 +43,13 @@ Gebruik .phpcs.xml.dist voor controle met WordPress Coding Standards.
 Het handmatige testplan staat in docs/testing.md.
 
 == Changelog ==
+
+= 0.3.0 =
+* Read-only site info widget toegevoegd aan het Interbo Dashboard.
+* Actuele sitegegevens toegevoegd: site URL, WordPress-versie, PHP-versie, database, actief thema, actieve plugins, tijdzone en omgeving.
+* WordPress.org requirements naast de daadwerkelijke sitespecificaties gezet.
+* WordPress requirements worden periodiek opgehaald vanaf wordpress.org en gecachet in een site transient.
+* Requirements vergelijking toegevoegd voor PHP, database, HTTPS en webserver.
 
 = 0.2.0 =
 * Centrale updatecontrole via GitHub Releases toegevoegd.
